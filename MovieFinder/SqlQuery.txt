@@ -1,0 +1,8 @@
+﻿SELECT DISTINCT Movie.*
+FROM Movie
+LEFT JOIN MovieActor ON Movie.Id = MovieActor.MovieId
+LEFT JOIN Actor ON MovieActor.ActorId = Actor.Id
+WHERE 
+    (LOWER(Movie.Title) LIKE '%' || LOWER(@title) || '%' OR @title IS NULL)
+    AND (LOWER(Movie.Genre) LIKE '%' || LOWER(@genre) || '%' OR @genre IS NULL)
+    AND (LOWER(Actor.Name) LIKE '%' || LOWER(@actorName) || '%' OR @actorName IS NULL);

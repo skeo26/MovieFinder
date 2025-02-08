@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="MovieFinder.View.MovieDetailView"
+             Title="Детали фильма">
+    <Frame Padding="20" BorderColor="#CCCCCC" CornerRadius="15" HasShadow="True" BackgroundColor="LightGrey">
+        <VerticalStackLayout Spacing="10">
+            <Label Text="Название фильма:" FontSize="14" TextColor="Blue" />
+            <Frame Padding="10" BorderColor="Gray" CornerRadius="10" HorizontalOptions="CenterAndExpand">
+                <Label Text="{Binding Movie.Title}" FontSize="18" FontAttributes="Bold" TextColor="#333333" />
+            </Frame>
+
+            <Label Text="Жанр:" FontSize="14" TextColor="Blue" />
+            <Frame Padding="10" BorderColor="Gray" CornerRadius="10" HorizontalOptions="CenterAndExpand">
+                <Label Text="{Binding Movie.Genre}" FontSize="14" TextColor="#333333" />
+            </Frame>
+
+            <Label Text="Год выпуска:" FontSize="14" TextColor="Blue" />
+            <Frame Padding="10" BorderColor="Gray" CornerRadius="10" HorizontalOptions="CenterAndExpand">
+                <Label Text="{Binding Movie.ReleaseYear}" FontSize="14" TextColor="#333333" />
+            </Frame>
+
+            <Label Text="Актеры:" FontSize="14" TextColor="Blue" />
+            <Frame Padding="10" BorderColor="Gray" CornerRadius="10" HorizontalOptions="CenterAndExpand">
+                <Label Text="{Binding Movie.ActorsText}" FontSize="14" TextColor="#333333" />
+            </Frame>
+
+            <Label Text="Режиссер:" FontSize="14" TextColor="Blue" />
+            <Frame Padding="10" BorderColor="Gray" CornerRadius="10" HorizontalOptions="CenterAndExpand">
+                <Label Text="{Binding Movie.Director}" FontSize="14" TextColor="#333333" />
+            </Frame>
+
+            <Label Text="Сборы:" FontSize="14" TextColor="Blue" />
+            <Frame Padding="10" BorderColor="Gray" CornerRadius="10" HorizontalOptions="CenterAndExpand">
+                <Label Text="{Binding Movie.Fees}" FontSize="14" TextColor="#333333" />
+            </Frame>
+            
+            <Label Text="Описание:" FontSize="14" TextColor="Blue" />
+            <Frame Padding="10" BorderColor="Gray" CornerRadius="10" HorizontalOptions="CenterAndExpand">
+                <Label Text="{Binding Movie.Description}" FontSize="14" TextColor="#333333" LineBreakMode="WordWrap" MaxLines="5" />
+            </Frame>
+
+        </VerticalStackLayout>
+    </Frame>
+</ContentPage>

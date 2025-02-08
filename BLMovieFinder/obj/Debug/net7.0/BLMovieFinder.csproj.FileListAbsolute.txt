@@ -1,0 +1,12 @@
+D:\c#\BLMovieFinder\obj\Debug\net7.0\BLMovieFinder.csproj.AssemblyReference.cache
+D:\c#\BLMovieFinder\obj\Debug\net7.0\BLMovieFinder.GeneratedMSBuildEditorConfig.editorconfig
+D:\c#\BLMovieFinder\obj\Debug\net7.0\BLMovieFinder.AssemblyInfoInputs.cache
+D:\c#\BLMovieFinder\obj\Debug\net7.0\BLMovieFinder.AssemblyInfo.cs
+D:\c#\BLMovieFinder\obj\Debug\net7.0\BLMovieFinder.csproj.CoreCompileInputs.cache
+D:\c#\BLMovieFinder\bin\Debug\net7.0\BLMovieFinder.deps.json
+D:\c#\BLMovieFinder\bin\Debug\net7.0\BLMovieFinder.dll
+D:\c#\BLMovieFinder\bin\Debug\net7.0\BLMovieFinder.pdb
+D:\c#\BLMovieFinder\obj\Debug\net7.0\BLMovieFinder.dll
+D:\c#\BLMovieFinder\obj\Debug\net7.0\refint\BLMovieFinder.dll
+D:\c#\BLMovieFinder\obj\Debug\net7.0\BLMovieFinder.pdb
+D:\c#\BLMovieFinder\obj\Debug\net7.0\ref\BLMovieFinder.dll

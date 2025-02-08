@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="MovieFinder.View.MainView"
+             Title="Movie Finder"
+             xmlns:vm="clr-namespace:MovieFinder.ViewModel"
+             WidthRequest="600" HeightRequest="400">
+
+
+    <Grid Padding="10">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+
+        <Entry Grid.Row="0" Placeholder="Введите название фильма" Text="{Binding SearchByTitle, Mode=TwoWay}" />
+
+        <Entry Grid.Row="1" Placeholder="Введите жанр" Text="{Binding SearchByGenre, Mode=TwoWay}" />
+
+        <Entry Grid.Row="2" Placeholder="Введите актера" Text="{Binding SearchByActor, Mode=TwoWay}" />
+        
+        <Button Grid.Row="3" Text="Поиск" Command="{Binding UpdateMoviesCommand}" />
+
+        <CollectionView Grid.Row="4" ItemsSource="{Binding Movies}" 
+                        SelectedItem="{Binding SelectedMovie, Mode=TwoWay}"
+                        SelectionMode="Single"
+                        SelectionChangedCommand="{Binding SelectionChangedCommand}" 
+                        VerticalOptions="FillAndExpand">
+            <CollectionView.ItemTemplate>
+                <DataTemplate>
+                    <Border StrokeShape="RoundRectangle 8"
+                            Background="LightGray"
+                            Padding="20" Margin="10">
+                        <Border.GestureRecognizers>
+                            <TapGestureRecognizer Command="{Binding Source={RelativeSource AncestorType={x:Type vm:MainViewModel}}, Path=SelectionChangedCommand}"
+                                                  CommandParameter="{Binding}" />
+                        </Border.GestureRecognizers>
+                        <VerticalStackLayout>
+                            <Label Text="{Binding Title}" FontSize="18" FontAttributes="Bold"/>
+                            <Label Text="{Binding Genre}" FontSize="14" />
+                            <Label Text="{Binding ReleaseYear}" FontSize="14" />
+                            <Label Text="{Binding ActorsText}" FontSize="14" />
+                        </VerticalStackLayout>
+                    </Border>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
+
+    </Grid>
+</ContentPage>
