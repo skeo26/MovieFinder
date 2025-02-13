@@ -273,3 +273,8 @@ D:\c#\MovieFinder\obj\Debug\net7.0-ios\iossimulator-x64\XamlC.stamp
 D:\c#\MovieFinder\obj\Debug\net7.0-ios\iossimulator-x64\MovieFinder.csproj.CopyComplete
 D:\c#\MovieFinder\obj\Debug\net7.0-ios\iossimulator-x64\MovieFinder.genruntimeconfig.cache
 D:\c#\MovieFinder\obj\Debug\net7.0-ios\iossimulator-x64\ref\MovieFinder.dll
+D:\c#\MovieFinder\bin\Debug\net7.0-ios\iossimulator-x64\Dapper.dll
+D:\c#\MovieFinder\bin\Debug\net7.0-ios\iossimulator-x64\Microsoft.Bcl.AsyncInterfaces.dll
+D:\c#\MovieFinder\bin\Debug\net7.0-ios\iossimulator-x64\Microsoft.Data.Sqlite.dll
+D:\c#\MovieFinder\bin\Debug\net7.0-ios\iossimulator-x64\BLMovieFinder.dll
+D:\c#\MovieFinder\bin\Debug\net7.0-ios\iossimulator-x64\BLMovieFinder.pdb

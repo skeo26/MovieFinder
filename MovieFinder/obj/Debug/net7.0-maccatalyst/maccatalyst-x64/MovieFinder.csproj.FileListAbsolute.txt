@@ -265,3 +265,6 @@ D:\c#\MovieFinder\obj\Debug\net7.0-maccatalyst\maccatalyst-x64\MovieFinder.genru
 D:\c#\MovieFinder\obj\Debug\net7.0-maccatalyst\maccatalyst-x64\ref\MovieFinder.dll
 D:\c#\MovieFinder\bin\Debug\net7.0-maccatalyst\maccatalyst-x64\BLMovieFinder.dll
 D:\c#\MovieFinder\bin\Debug\net7.0-maccatalyst\maccatalyst-x64\BLMovieFinder.pdb
+D:\c#\MovieFinder\bin\Debug\net7.0-maccatalyst\maccatalyst-x64\Dapper.dll
+D:\c#\MovieFinder\bin\Debug\net7.0-maccatalyst\maccatalyst-x64\Microsoft.Bcl.AsyncInterfaces.dll
+D:\c#\MovieFinder\bin\Debug\net7.0-maccatalyst\maccatalyst-x64\Microsoft.Data.Sqlite.dll

@@ -330,3 +330,6 @@ D:\c#\MovieFinder\obj\Debug\net7.0-windows10.0.19041.0\win10-x64\MultipleQualifi
 D:\c#\MovieFinder\obj\Debug\net7.0-windows10.0.19041.0\win10-x64\ProjectArchitectures.txt
 D:\c#\MovieFinder\bin\Debug\net7.0-windows10.0.19041.0\win10-x64\BLMovieFinder.dll
 D:\c#\MovieFinder\bin\Debug\net7.0-windows10.0.19041.0\win10-x64\BLMovieFinder.pdb
+D:\c#\MovieFinder\bin\Debug\net7.0-windows10.0.19041.0\win10-x64\Dapper.dll
+D:\c#\MovieFinder\bin\Debug\net7.0-windows10.0.19041.0\win10-x64\Microsoft.Bcl.AsyncInterfaces.dll
+D:\c#\MovieFinder\bin\Debug\net7.0-windows10.0.19041.0\win10-x64\Microsoft.Data.Sqlite.dll

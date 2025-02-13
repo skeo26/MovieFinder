@@ -2,6 +2,7 @@
 using BLMovieFinder.Models;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
+using MovieFinder.Database;
 using MovieFinder.View;
 using System;
 using System.Collections.Generic;
@@ -17,55 +18,62 @@ namespace MovieFinder.ViewModel
 {
     public partial class MainViewModel : ObservableObject
     {
-        private ObservableCollection<Movie> _movies = new();
-        public ObservableCollection<Movie> Movies
+        private ObservableCollection<MovieViewModel> _movies = new();
+        public ObservableCollection<MovieViewModel> Movies
         {
             get => _movies;
-            set => SetProperty(ref _movies, value);
+            private set => SetProperty(ref _movies, value);
         }
 
 
         private readonly IMovieRepository _movieRepository;
         private CancellationTokenSource _cancellationTokenSource = new();
 
-        private string searchByTitle;
+        private string _searchByTitle = string.Empty;
         public string SearchByTitle
         {
-            get => searchByTitle;
+            get => _searchByTitle;
             set
             {
-                SetProperty(ref searchByTitle, value);
-                DebounceUpdateMovies();
+                if (SetProperty(ref _searchByTitle, value))
+                {
+                    DebounceUpdateMovies();
+                }
             }
         }
 
-        private string searchByGenre;
+        private string _searchByGenre = string.Empty;
         public string SearchByGenre
         {
-            get => searchByGenre;
+            get => _searchByGenre;
             set
             {
-                SetProperty(ref searchByGenre, value);
-                DebounceUpdateMovies();
+                if (SetProperty(ref _searchByGenre, value))
+                {
+                    DebounceUpdateMovies();
+                }
             }
         }
 
-        private string searchByActor;
+        private string _searchByActor = string.Empty;
         public string SearchByActor
         {
-            get => searchByActor;
+            get => _searchByActor;
             set
             {
-                SetProperty(ref searchByActor, value);
-                DebounceUpdateMovies();
+                if (SetProperty(ref _searchByActor, value))
+                {
+                    DebounceUpdateMovies();
+                }
             }
         }
 
         public ICommand UpdateMoviesCommand { get; }
         public ICommand SelectionChangedCommand { get; }
 
-        private Movie selectedMovie;
-        public Movie SelectedMovie
+        private MovieViewModel selectedMovie;
+
+        public MovieViewModel SelectedMovie
         {
             get => selectedMovie;
             set => SetProperty(ref selectedMovie, value);
@@ -91,10 +99,21 @@ namespace MovieFinder.ViewModel
             await Shell.Current.GoToAsync(nameof(MovieDetailView), navigationParameter); ;
         }
 
-        private async Task<ObservableCollection<Movie>> SearchMovie(string title, string genre, string actor)
+        private async Task<ObservableCollection<MovieViewModel>> SearchMovie(string title, string genre, string actor)
         {
             var movies = await _movieRepository.SearchMoviesAsync(title, genre, actor);
-            return new ObservableCollection<Movie>(movies);
+            var movieViewModels = movies.Select(m => new MovieViewModel(new MovieDTO
+            {
+                Title = m.Title,
+                Genre = m.Genre,
+                ReleaseYear = m.ReleaseYear,
+                ActorsText = m.ActorsText,
+                Director = m.Director,
+                Fees = m.Fees,
+                Description = m.Description
+            })).ToList();
+
+            return new ObservableCollection<MovieViewModel>(movieViewModels);
         }
 
         private async void DebounceUpdateMovies()
@@ -118,7 +137,7 @@ namespace MovieFinder.ViewModel
         public async Task UpdateMoviesAsync()
         {
             var movies = await SearchMovie(SearchByTitle, SearchByGenre, SearchByActor);
-            Movies = new ObservableCollection<Movie>(movies);
+            Movies = new ObservableCollection<MovieViewModel>(movies);
         }
     }
 }

@@ -36,7 +36,9 @@ namespace MovieFinder.Database
 
         public async Task<List<Movie>> SearchMoviesAsync(string title, string genre, string actorName)
         {
-            var movies = await _db.Table<Movie>().ToListAsync();
+            var moviesQuery = _db.Table<Movie>();
+
+            var movies = await moviesQuery.ToListAsync(); 
 
             if (!string.IsNullOrWhiteSpace(title))
             {
@@ -50,37 +52,54 @@ namespace MovieFinder.Database
                 movies = movies.Where(m => m.Genre.ToLower().Contains(lowerGenre)).ToList();
             }
 
-            foreach (var movie in movies)
-            {
-                var movieActors = await _db.Table<MovieActor>()
-                    .Where(ma => ma.MovieId == movie.Id)
-                    .ToListAsync();
+            if (!movies.Any())
+                return movies;
 
-                var actorIds = movieActors.Select(ma => ma.ActorId).ToList();
+            var movieIds = movies.Select(m => m.Id).ToList();
 
-                var actors = await _db.Table<Actor>()
-                    .Where(a => actorIds.Contains(a.Id))
-                    .ToListAsync();
+            var movieActors = await _db.Table<MovieActor>()
+                .Where(ma => movieIds.Contains(ma.MovieId))
+                .ToListAsync();
 
-                movie.ActorsText = actors.Any() ? string.Join(", ", actors.Select(a => a.Name)) : "Нет данных";
-            }
+            var actorIds = movieActors.Select(ma => ma.ActorId).Distinct().ToList();
+            var actors = await _db.Table<Actor>()
+                .Where(a => actorIds.Contains(a.Id))
+                .ToListAsync();
 
             if (!string.IsNullOrWhiteSpace(actorName))
             {
                 string lowerActorName = actorName.ToLower();
-                var matchedActors = await _db.Table<Actor>().ToListAsync();
-                var actorIds = matchedActors.Where(a => a.Name.ToLower().Contains(lowerActorName)).Select(a => a.Id).ToList();
+                var matchedActorIds = actors
+                    .Where(a => a.Name.ToLower().Contains(lowerActorName))
+                    .Select(a => a.Id)
+                    .ToList();
 
-                var matchedMovieActors = await _db.Table<MovieActor>()
-                    .Where(ma => actorIds.Contains(ma.ActorId))
-                    .ToListAsync();
+                var matchedMovieIds = movieActors
+                    .Where(ma => matchedActorIds.Contains(ma.ActorId))
+                    .Select(ma => ma.MovieId)
+                    .Distinct()
+                    .ToList();
 
-                var movieIds = matchedMovieActors.Select(ma => ma.MovieId).ToList();
+                movies = movies.Where(m => matchedMovieIds.Contains(m.Id)).ToList();
+            }
 
-                movies = movies.Where(m => movieIds.Contains(m.Id)).ToList();
+            foreach (var movie in movies)
+            {
+                var relatedActorIds = movieActors
+                    .Where(ma => ma.MovieId == movie.Id)
+                    .Select(ma => ma.ActorId)
+                    .ToList();
+
+                var relatedActors = actors
+                    .Where(a => relatedActorIds.Contains(a.Id))
+                    .Select(a => a.Name)
+                    .ToList();
+
+                movie.ActorsText = relatedActors.Any() ? string.Join(", ", relatedActors) : "Нет данных";
             }
 
             return movies;
         }
+
     }
 }

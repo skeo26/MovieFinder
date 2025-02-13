@@ -1,5 +1,6 @@
 ﻿using BLMovieFinder.Models;
 using CommunityToolkit.Mvvm.ComponentModel;
+using MovieFinder.Database;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,11 +10,16 @@ using System.Threading.Tasks;
 
 namespace MovieFinder.ViewModel
 {
-    [QueryProperty(nameof(Movie), "Movie")]
+    [QueryProperty(nameof(MovieViewModel), "Movie")]
     public partial class MovieDetailViewModel : ObservableObject
     {
-        [ObservableProperty]
-        private Movie movie;
+        private MovieViewModel _movieViewModel;
+        public MovieViewModel MovieViewModel
+        {
+            get => _movieViewModel;
+            set => SetProperty(ref _movieViewModel, value);
+        }
     }
+
 }
 
